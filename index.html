@@ -3,57 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Realistic Coin Flipper</title>
+    <title>Color Flipper || Simple</title>
+
+    <!-- styles -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="background-noise" aria-hidden="true"></div>
-    <main class="app">
-      <header class="app-header">
-        <h1>Coin Flipper</h1>
-        <p>Flip a high-detail coin with natural spin and live statistics.</p>
-      </header>
-
-      <section class="table" aria-label="Coin table">
-        <div class="coin-stage">
-          <div class="coin-shadow" aria-hidden="true"></div>
-          <div class="coin" id="coin" aria-hidden="true">
-            <div class="coin-face coin-face--heads">
-              <span class="coin-mark">1</span>
-              <span class="coin-label">Liberty</span>
-            </div>
-            <div class="coin-face coin-face--tails">
-              <span class="coin-mark">Eagle</span>
-              <span class="coin-label">United States</span>
-            </div>
-            <div class="coin-rim"></div>
-          </div>
-        </div>
-
-        <p class="result" id="result" aria-live="polite">Ready to flip</p>
-        <button class="flip-btn" id="flip-btn" type="button">Flip Coin</button>
-      </section>
-
-      <section class="stats" aria-label="Flip statistics">
-        <article class="stat-card">
-          <h2>Heads</h2>
-          <p id="heads-count">0</p>
-        </article>
-        <article class="stat-card">
-          <h2>Tails</h2>
-          <p id="tails-count">0</p>
-        </article>
-        <article class="stat-card">
-          <h2>Total</h2>
-          <p id="total-count">0</p>
-        </article>
-      </section>
-
-      <section class="history-wrap" aria-label="Last results">
-        <h2>Last 6 Flips</h2>
-        <ol class="history-list" id="history-list"></ol>
-      </section>
+    <nav>
+      <div class="nav-center">
+        <h4>Color Flipper</h4>
+      <ul class="nav-links">
+          <li><a href="index.html">Simple</a></li>
+          <li><a href="hex.html">Hexadecimal</a></li>
+      </ul>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <h2>background color: <span class="color">#f1f5f8</span></h2>
+        <button class="btn  btn-hero" id="btn">Click Me</button>
+      </div>
     </main>
+    <!-- javascript -->
     <script src="app.js"></script>
   </body>
 </html>
