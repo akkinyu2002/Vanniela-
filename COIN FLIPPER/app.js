@@ -66,11 +66,13 @@ function finishFlip(outcome, targetX, targetY) {
 
 function animateFlip(outcome) {
   const outcomeY = outcome === "heads" ? 0 : 180;
+  const currentY = ((state.rotationY % 360) + 360) % 360;
+  const deltaToOutcome = ((outcomeY - currentY) + 360) % 360;
   const spinX = randomInteger(6, 9) * 360;
   const spinY = randomInteger(3, 5) * 360;
   const wobble = randomInteger(-35, 35);
   const targetX = state.rotationX + spinX + wobble;
-  const targetY = state.rotationY + spinY + outcomeY;
+  const targetY = state.rotationY + spinY + deltaToOutcome;
 
   if (prefersReducedMotion || typeof coin.animate !== "function") {
     coin.style.transition = "transform 780ms cubic-bezier(0.2, 0.78, 0.23, 1)";
