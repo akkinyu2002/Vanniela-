@@ -27,6 +27,10 @@ function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function normalizeSignedAngle(angle) {
+  return ((((angle + 180) % 360) + 360) % 360) - 180;
+}
+
 function setBusyState(isBusy) {
   state.spinning = isBusy;
   flipButton.disabled = isBusy;
@@ -57,7 +61,7 @@ function updateResult(outcome) {
 }
 
 function finishFlip(outcome, targetX, targetY) {
-  state.rotationX = targetX % 3600;
+  state.rotationX = normalizeSignedAngle(targetX);
   state.rotationY = ((targetY % 360) + 360) % 360;
   coin.style.transform = `rotateX(${state.rotationX}deg) rotateY(${state.rotationY}deg)`;
   setBusyState(false);
@@ -67,11 +71,12 @@ function finishFlip(outcome, targetX, targetY) {
 function animateFlip(outcome) {
   const outcomeY = outcome === "heads" ? 0 : 180;
   const currentY = ((state.rotationY % 360) + 360) % 360;
+  const currentTiltX = normalizeSignedAngle(state.rotationX);
   const deltaToOutcome = ((outcomeY - currentY) + 360) % 360;
   const spinX = randomInteger(6, 9) * 360;
   const spinY = randomInteger(3, 5) * 360;
-  const wobble = randomInteger(-35, 35);
-  const targetX = state.rotationX + spinX + wobble;
+  const targetTiltX = randomInteger(-16, 16);
+  const targetX = state.rotationX + spinX + (targetTiltX - currentTiltX);
   const targetY = state.rotationY + spinY + deltaToOutcome;
 
   if (prefersReducedMotion || typeof coin.animate !== "function") {
