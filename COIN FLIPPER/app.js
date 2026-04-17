@@ -64,6 +64,7 @@ function finishFlip(outcome, targetX, targetY) {
   state.rotationX = normalizeSignedAngle(targetX);
   state.rotationY = ((targetY % 360) + 360) % 360;
   coin.style.transform = `rotateX(${state.rotationX}deg) rotateY(${state.rotationY}deg)`;
+  coin.dataset.side = outcome;
   setBusyState(false);
   updateResult(outcome);
 }

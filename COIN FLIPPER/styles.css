@@ -126,10 +126,10 @@ body::after {
   width: var(--coin-size);
   aspect-ratio: 1 / 1;
   position: relative;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   transform: rotateX(0deg) rotateY(0deg);
   will-change: transform;
-  filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.26));
 }
 
 .coin-face {
@@ -140,7 +140,12 @@ body::after {
   gap: 0.5rem;
   padding: 1.3rem;
   border-radius: 50%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  opacity: 1;
+  transition: opacity 160ms linear;
   text-align: center;
   border: 3px solid #e0b457;
   background:
@@ -180,6 +185,14 @@ body::after {
     radial-gradient(circle at 24% 22%, rgba(255, 255, 255, 0.72) 0%, transparent 34%),
     radial-gradient(circle at 68% 72%, rgba(113, 56, 7, 0.6) 0%, transparent 44%),
     linear-gradient(158deg, #f8e4a0 0%, #c9923d 42%, #efc86d 76%, #94631b 100%);
+}
+
+.coin[data-side="heads"] .coin-face--tails {
+  opacity: 0;
+}
+
+.coin[data-side="tails"] .coin-face--heads {
+  opacity: 0;
 }
 
 .coin-rim {
